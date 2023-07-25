@@ -12,7 +12,9 @@ jobs:
       - run: vagrant --version
       - run: vagrant up
       - run: vagrant ssh -c "echo 'hello world!'"
-  hello-workflow-ln:
-    uses: ./w.yml@main
-  hello-workflow:
-    uses: ./.github/workflows/workflow.yml@main
+#   hello-workflow-ln:
+#     uses: ./w.yml@main
+#   hello-workflow:
+#     uses: ./.github/workflows/workflow.yml@main
+  hello2:
+    uses: ./.github/workflows/hello.yml
