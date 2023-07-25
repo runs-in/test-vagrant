@@ -1,6 +1,6 @@
 on: push
 jobs:
-  hello:
+  hello: &hello
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v2
@@ -16,5 +16,5 @@ jobs:
 #     uses: ./w.yml@main
 #   hello-workflow:
 #     uses: ./.github/workflows/workflow.yml@main
-  hello2:
-    uses: ./.github/workflows/hello.yml
+#   hello2:
+#     uses: ./.github/workflows/hello.yml
