@@ -1,7 +1,7 @@
 on: workflow_dispatch
 jobs:
   code-server:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: debugci/setup-code-server@v1
       - uses: debugci/setup-cloudflared@v1
