@@ -1,0 +1,14 @@
+name: Auto
+on: workflow_dispatch
+jobs:
+  vagrant:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: ~/.vagrant.d/boxes
+          key: ${{ runner.os }}-vagrant-${{ hashFiles('Vagrantfile') }}
+          restore-keys: ${{ runner.os }}-vagrant-
+      - run: vagrant --version
+      - run: bash main.sh
