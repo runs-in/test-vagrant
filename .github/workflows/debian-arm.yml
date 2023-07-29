@@ -4,10 +4,16 @@ jobs:
   debian-arm:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          sudo apt-get update -q -y
-          sudo apt-get -qq install -y qemu qemu-user-static
-          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes --credential yes
-      - run: |
-          docker run --name mycontainer -dit arm64v8/debian /bin/sh
-          docker exec -it mycontainer uname -a
+      - uses: actions/checkout@v3
+      - uses: debugci/setup-code-server@v1
+      - uses: debugci/setup-cloudflared@v1
+      - run: nohup code-server --auth none --bind-addr 0.0.0.0:4000 "$GITHUB_WORKSPACE" &
+      - run: nohup cloudflared tunnel --url http://localhost:4000 &
+      - run: sleep 1500
+      # - run: |
+      #     sudo apt-get update -q -y
+      #     sudo apt-get -qq install -y qemu qemu-user-static
+      #     docker run --rm --privileged multiarch/qemu-user-static --reset -p yes --credential yes
+      # - run: |
+      #     docker run --name mycontainer --platform linux/amd64 -dit debian /bin/sh
+      #     docker exec -it mycontainer uname -a
