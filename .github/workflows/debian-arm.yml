@@ -1,0 +1,8 @@
+on: workflow_dispatch
+jobs:
+  debian-arm:
+    runs-on: ubuntu-latest
+    container: arm64v8/debian
+    steps:
+      - run: uname -a
+      - run: gcc -print-multiarch
