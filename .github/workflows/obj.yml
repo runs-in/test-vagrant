@@ -3,7 +3,7 @@ jobs:
   job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "$X"
-        env:
-          X: ${{ github }}
+#       - run: echo "$X"
+#         env:
+#           X: ${{ github }}
       - run: echo '${{ github }}'
