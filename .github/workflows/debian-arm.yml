@@ -3,7 +3,11 @@ on: workflow_dispatch
 jobs:
   debian-arm:
     runs-on: ubuntu-latest
-    container: arm64v8/debian
     steps:
-      - run: uname -a
-      - run: gcc -print-multiarch
+      - run: |
+          sudo apt-get update -q -y
+          sudo apt-get -qq install -y qemu qemu-user-static
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes --credential yes
+      - run: |
+          docker run --name mycontainer -dit arm64v8/debian /bin/sh
+          docker exec -it mycontainer uname -a
