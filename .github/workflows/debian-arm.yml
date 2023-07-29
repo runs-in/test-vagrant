@@ -1,3 +1,4 @@
+name: Debian ARM
 on: workflow_dispatch
 jobs:
   debian-arm:
