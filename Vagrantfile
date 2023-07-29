@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "perk/ubuntu-20.04-arm64"
+  config.vm.box = "perk/ubuntu-2204-arm64"
   config.vm.provider "qemu" do |qe|
+    qe.ssh_port = 22
     qe.arch = "aarch64"
     qe.machine = "virt"
     qe.cpu = "cortex-a57"
